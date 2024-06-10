@@ -33,15 +33,15 @@ class _HomeState extends State<Home> {
 
   void _addTodoItem(String text) {
     setState(() {
-
-      todoList.list.add(ToDo(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-        todoText: text
-      ));
-      _todoController.clear();
+      if (!text.isEmpty) {
+        todoList.list.add(ToDo(
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          todoText: text
+        ));
+        _todoController.clear();
+      }
     });
   }
-
   void _runFilter(String key) {
     List<ToDo> results = [];
     if(key.isEmpty) {
@@ -78,7 +78,7 @@ class _HomeState extends State<Home> {
         children: [
           Container( // container para o todo itens
 
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            padding: EdgeInsets.fromLTRB(20, 15, 20, 100),
 
             child: Column(
 
