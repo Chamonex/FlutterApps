@@ -3,6 +3,7 @@ import '../constants/colors.dart';
 import '../widgets/searchBox.dart';
 import '../widgets/toDoWidget.dart';
 import '../model/toDo.dart';
+import '../model/toDoList.dart';
 
 class Home extends StatefulWidget {
   Home({super.key});
@@ -12,7 +13,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final todosList = ToDo.todoList();
+
+  ToDoList todoList = ToDoList([]);
+
   final _todoController = TextEditingController();
   List<ToDo> _foundToDo = [];
 
@@ -24,14 +27,14 @@ class _HomeState extends State<Home> {
 
   void _deleteTodoItem(String id) {
     setState(() {
-      todosList.removeWhere((item) => item.id == id);
+      todoList.list.removeWhere((item) => item.id == id);
     });
   }
 
   void _addTodoItem(String text) {
     setState(() {
 
-      todosList.add(ToDo(
+      todoList.list.add(ToDo(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
         todoText: text
       ));
@@ -42,10 +45,10 @@ class _HomeState extends State<Home> {
   void _runFilter(String key) {
     List<ToDo> results = [];
     if(key.isEmpty) {
-      results = todosList;
+      results = todoList.list;
     }
     else {
-      results = todosList
+      results = todoList.list
         .where((element) => element.todoText!
           .toLowerCase()
           .contains(key.toLowerCase()))
@@ -59,13 +62,12 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    _foundToDo = todosList;
+    _foundToDo = todoList.list;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
 
     return Scaffold(
       backgroundColor: tdBGColor,
