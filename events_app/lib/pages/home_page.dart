@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../widgets/day_button_widget.dart';
 import '../widgets/event_widget.dart';
-import './event_page.dart';
 import 'dart:convert';
 import '../models/eventList.dart';
 
 import 'package:flutter/services.dart' show rootBundle;
 import '../widgets/error_widgets/event_error_widget.dart';
-
-import '../repositories/event_repository.dart';
 
 class homePage extends StatefulWidget {
   homePage({super.key});
@@ -41,7 +38,10 @@ class _homePageState extends State<homePage> {
           elevation: 4.0,
           backgroundColor: Color.fromRGBO(45, 61, 89, 1),
           title: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-            Text('Events Flutter App', style: TextStyle(fontSize: 25, color: Colors.white),),
+            Text(
+              'Events Flutter App',
+              style: TextStyle(fontSize: 25, color: Colors.white),
+            ),
             Container(
               padding: EdgeInsets.fromLTRB(0, 2, 0, 10),
               child: const Text(
@@ -115,28 +115,24 @@ class _homePageState extends State<homePage> {
                   future: readJson(),
                   builder:
                       (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-
                     if (snapshot.hasData) {
                       return Expanded(
                           child: ListView.builder(
-                            itemCount: snapshot.data.items.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return ListTile(
-                                title: EventWidget(
-                                  event: snapshot.data.items[index],
-                                )
-                              );
-                            },
-                          )
-                      );
+                        itemCount: snapshot.data.items.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ListTile(
+                              title: EventWidget(
+                            event: snapshot.data.items[index],
+                          ));
+                        },
+                      ));
                     } else if (snapshot.hasError) {
                       print("ERROR");
                       return EventError();
                     } else {
                       return Text("LOADING");
                     }
-                  }
-                )
+                  })
             ], // children column principal
           ),
         ) // Container que envolve todo o body para background
