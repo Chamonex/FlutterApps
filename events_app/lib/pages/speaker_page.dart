@@ -96,12 +96,12 @@ class _SpeakerPageState extends State<SpeakerPage> {
                       ),
                     ),
                     
-                    EventWidget(),
-                    EventWidget(),
-                    EventWidget(),
-                    EventWidget(),
-                    EventWidget(),
-                    EventWidget(),
+                    // EventWidget(),
+                    // EventWidget(),
+                    // EventWidget(),
+                    // EventWidget(),
+                    // EventWidget(),
+                    // EventWidget(),
                   ],
                 )
               ),

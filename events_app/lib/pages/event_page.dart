@@ -21,7 +21,7 @@ class _EventPageState extends State<EventPage> {
         elevation: 4.0,
         shadowColor: Colors.black,
         backgroundColor: Color.fromRGBO(45, 61, 89, 1),
-        title: Text('Chuva ❤️ Flutter', style: TextStyle(fontSize: 25, color: Colors.white),),
+        title: Text('Events Flutter App', style: TextStyle(fontSize: 25, color: Colors.white),),
       ),
 
       body: Container(

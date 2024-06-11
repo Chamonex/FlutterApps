@@ -1,16 +1,21 @@
 import './event.dart';
 
 class EventList {
-
-  late int cout;
+  late int count;
   late List<Event> items;
 
-  EventList(this.cout, this.items);
+  EventList({
+    required this.count,
+    required this.items,
+  });
 
-  EventList.fromJson(Map<String, dynamic> json) {
-    List<Event> itemList = json["data"];
-
-    cout = json["count"];
-    items = itemList;
+  factory EventList.fromJson(Map<String, dynamic> json) {
+    return EventList(
+      count: json['count'],
+      items: (json['data'] as List)
+        .map((events) => Event.fromJson(events))
+        .toList(),
+    );
   }
+
 }

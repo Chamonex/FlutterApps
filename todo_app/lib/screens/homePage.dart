@@ -4,6 +4,8 @@ import '../widgets/searchBox.dart';
 import '../widgets/toDoWidget.dart';
 import '../model/toDo.dart';
 import '../model/toDoList.dart';
+import '../widgets/deleteAlert.dart';
+
 
 class Home extends StatefulWidget {
   Home({super.key});
@@ -25,7 +27,8 @@ class _HomeState extends State<Home> {
     });
   }
 
-  void _deleteTodoItem(String id) {
+  void _deleteTodoItem(String id) {;
+
     setState(() {
       todoList.list.removeWhere((item) => item.id == id);
     });
@@ -80,7 +83,7 @@ class _HomeState extends State<Home> {
 
             padding: EdgeInsets.fromLTRB(20, 15, 20, 100),
 
-            child: Column(
+            child: Column( // column todo itens
 
               children: [
                 searchBox(changeFunction: _runFilter,),
@@ -88,7 +91,7 @@ class _HomeState extends State<Home> {
                   child: ListView(
 
                     children: [
-                      Container(
+                      Container( // todo title
                         margin: EdgeInsets.only(top: 50, bottom: 20),
                         child: Text(
                           'All toDos',
@@ -98,7 +101,7 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                       ),
-                      for (ToDo todo in _foundToDo)
+                      for (ToDo todo in _foundToDo) // todo cards
                         ToDoItem(todo: todo, onTodoChanged: _handleTodoChange, onDeleteItem: _deleteTodoItem,)
                     ],
                   ),
