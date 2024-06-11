@@ -1,20 +1,32 @@
+import 'dart:convert';
 import 'package:flutter/services.dart';
+import '../models/eventList.dart';
 
 class ContentController {
-  // receber e decodificar o json em uma EventList
 
+  ContentController();
 
-  Future<String> function(String path) async {
-    String jsonString = await rootBundle.loadString("assets/activities.json");
-    if (jsonString.isNotEmpty) {
-      print("SUCESSO AO CARREGAR JSON");
-      return jsonString;
-    }
-    else {
-      print("ERRO");
-      return "ERRO AO CARREGAR JSON";
+  Future<EventList> readJson() async {
+    final response = await rootBundle.loadString('assets/activities.json');
+    final Map<String, dynamic> jsonMap = jsonDecode(response);
 
-    }
+    final EventList list = EventList.fromJson(jsonMap);
+
+    return list;
   }
+
+  // Future<EventList> readJsonByDay(int day) async {
+  //   final response = await rootBundle.loadString('assets/activities.json');
+  //   final Map<String, dynamic> jsonMap = jsonDecode(response);
+  //   final Map<String, dynamic> filteredMap = {};
+  //
+  //   jsonMap.forEach((key, value) {
+  //     if(key == "")
+  //   })
+  //
+  //   final EventList list = EventList.fromJson(jsonMap);
+  //
+  //   return list;
+  // }
 
 }

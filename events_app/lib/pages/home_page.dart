@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../widgets/day_button_widget.dart';
 import '../widgets/event_widget.dart';
-import 'dart:convert';
-import '../models/eventList.dart';
-
-import 'package:flutter/services.dart' show rootBundle;
 import '../widgets/error_widgets/event_error_widget.dart';
+import'../controller/content_controller.dart';
+
 
 class homePage extends StatefulWidget {
   homePage({super.key});
@@ -16,14 +14,9 @@ class homePage extends StatefulWidget {
 }
 
 class _homePageState extends State<homePage> {
-  Future<EventList> readJson() async {
-    final response = await rootBundle.loadString('assets/activities.json');
-    final Map<String, dynamic> jsonMap = jsonDecode(response);
 
-    final EventList list = EventList.fromJson(jsonMap);
 
-    return list;
-  }
+  final ContentController controller = ContentController();
 
   void initState() {
     super.initState();
@@ -112,7 +105,8 @@ class _homePageState extends State<homePage> {
               ), // menu para selecionar os dias
 
               FutureBuilder<dynamic>(
-                  future: readJson(),
+                  // future: readJson(),
+                  future: controller.readJson(),
                   builder:
                       (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                     if (snapshot.hasData) {
