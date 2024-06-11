@@ -16,12 +16,8 @@ class homePage extends StatefulWidget {
 
 class _homePageState extends State<homePage> {
 
-  EventList? _eventList;
-  String _rbtest = "aa";
-
   void initState() {
     super.initState();
-    print("INICIEI O STATE");
     _loadJson();
   }
 
@@ -32,7 +28,7 @@ class _homePageState extends State<homePage> {
     EventList e = EventList.fromJson(jsonMap);
 
     setState(() {
-      _eventList = e;
+      // _eventList = e;
     });
   }
 
@@ -49,7 +45,7 @@ class _homePageState extends State<homePage> {
         title: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text(_rbtest, style: TextStyle(fontSize: 25, color: Colors.white),),
+            Text("App Flutter", style: TextStyle(fontSize: 25, color: Colors.white),),
             // Text('$_itensCount', style: TextStyle(fontSize: 25, color: Colors.white),), 
             Container(
               padding: EdgeInsets.fromLTRB(0, 2, 0, 10),
