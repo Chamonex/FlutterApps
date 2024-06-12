@@ -106,12 +106,11 @@ class _homePageState extends State<homePage> {
 
               FutureBuilder<dynamic>(
                   // future: readJson(),
-                  future: controller.readJson(),
+                  future: controller.filterJson(27),
                   builder:
                       (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                     if (snapshot.hasData) {
-                      return Expanded(
-                          child: ListView.builder(
+                      return Expanded( child: ListView.builder(
                         itemCount: snapshot.data.items.length,
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(

@@ -63,7 +63,7 @@ class _EventWidgetState extends State<EventWidget> {
                       children: [
                         Container(
                           padding: EdgeInsets.fromLTRB(0, 0, 0, 2),
-                          child: Text(widget.event.type,
+                          child: Text(widget.event.start.day.toString(),
                               style: TextStyle(
                                 fontSize: 12,
                               )),

@@ -1,22 +1,22 @@
-class Event {
-  final String start;
-  final String end;
 
+class Event {
+  final String startString;
+  final String endString;
   final String title;
   final String? description;
   final String category;
   final String? color;
   final String? backgroundColor;
-
   final List<Location>? locations;
-
   final String type;
-
   final List<Person>? people;
 
+  late final DateTime start;
+  late final DateTime end;
+
   Event({
-    required this.start,
-    required this.end,
+    required this.startString,
+    required this.endString,
     required this.title,
     required this.description,
     required this.category,
@@ -25,12 +25,15 @@ class Event {
     required this.locations,
     required this.type,
     required this.people,
-  });
+  }) {
+    start = DateTime.parse(startString);
+    end = DateTime.parse(endString);
+  }
 
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
-      start: json["start"],
-      end: json["end"],
+      startString: json["start"],
+      endString: json["end"],
       title: json["title"]["pt-br"],
       description: json["description"]["pt-br"] as String?,
       category: json["category"]["title"]["pt-br"],
@@ -46,6 +49,8 @@ class Event {
           .map((person) => Person.fromJson(person))
           .toList(),
     );
+
+
   }
 }
 
@@ -90,4 +95,5 @@ class Person {
       role: json["role"]["label"]["pt-br"],
     );
   }
+
 }
