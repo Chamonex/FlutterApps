@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'pomodoro_app',
       home: const HomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

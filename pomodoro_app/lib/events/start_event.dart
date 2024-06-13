@@ -1,3 +1,3 @@
-import 'package:pomodoro_app/events/treino_event.dart';
+import 'package:pomodoro_app/events/pomodoro_event.dart';
 
-class StartEvent implements TreinoEvent {}
+class StartEvent implements PomodoroEvent {}
