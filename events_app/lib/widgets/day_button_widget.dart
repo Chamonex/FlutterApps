@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import '../controller/content_controller.dart';
 
 class dayButtonWidget extends StatelessWidget {
   final int day;
+  final ContentController controller;
 
-  dayButtonWidget({super.key, required this.day});
+  dayButtonWidget({
+    super.key,
+    required this.day,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        // vai adicionar um item na stream
+      },
       style: TextButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,

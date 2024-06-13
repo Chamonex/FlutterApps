@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import '../models/eventList.dart';
@@ -7,16 +8,18 @@ class ContentController {
 
   ContentController();
 
-  Future<EventList> readAllJson() async {
-    final response = await rootBundle.loadString('assets/activities.json');
-    final Map<String, dynamic> jsonMap = jsonDecode(response);
+  int day = 26;
+  StreamController<double> buttonController = StreamController<double>();
 
-    final EventList list = EventList.fromJson(jsonMap);
-
-    return list;
+  void changeDay() {
+    Stream stream = buttonController.stream;
+    stream.listen((day) {
+      this.day = day as int;
+      print("\n\n OMGG -> ${day}");
+    });
   }
 
-  Future<EventList> filterJson(int day) async {
+  Future<EventList> filterJson() async {
     final response = await rootBundle.loadString('assets/activities.json');
     final Map<String, dynamic> jsonMap = jsonDecode(response);
 

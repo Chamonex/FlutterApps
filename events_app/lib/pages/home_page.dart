@@ -94,19 +94,20 @@ class _homePageState extends State<homePage> {
                       child: ButtonBar(
                         alignment: MainAxisAlignment.start,
                         children: [
-                          dayButtonWidget(day: 26),
-                          dayButtonWidget(day: 27),
-                          dayButtonWidget(day: 28),
-                          dayButtonWidget(day: 29),
-                          dayButtonWidget(day: 30),
+                          dayButtonWidget(day: 26, controller: controller,),
+                          dayButtonWidget(day: 27, controller: controller,),
+                          dayButtonWidget(day: 28, controller: controller,),
+                          dayButtonWidget(day: 29, controller: controller,),
+                          dayButtonWidget(day: 30, controller: controller,),
                         ],
                       )),
                 ],
               ), // menu para selecionar os dias
 
               FutureBuilder<dynamic>(
-                  // future: readJson(),
-                  future: controller.filterJson(27),
+                  // preciso de uma stream que saia dos botões de data
+                  // e passe o dia para o metodo filterJson()
+                  future: controller.filterJson(),
                   builder:
                       (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                     if (snapshot.hasData) {
